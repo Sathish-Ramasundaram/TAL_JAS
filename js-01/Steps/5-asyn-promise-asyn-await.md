@@ -16,14 +16,21 @@ setTimeout(function () {
 
 console.log("End");
 
+setTimeout(() => {
+  console.log("Print after 4 sec. This arrow function");
+}, 4000);
+
+
 2. Test: 
 
 Start
 End
 Print after 4 sec
+Print after 4 sec. This arrow function
 Task finished after 5 seconds
 
 Because setTimeout is async — it runs later.
+
 
 3. Promise (clean async container)
 A Promise = “I will give result later”
@@ -48,12 +55,25 @@ That’s exactly how Promise works.
 
 simple one: 
 
+// Step 1: Create Promise
 const p = new Promise(function (resolve) { 
 resolve("Hello"); 
 }); 
 
+// Step 2: Use the result with .then()
 p.then(function (value) { 
 console.log(value); 
+});
+
+
+
+// Normally Promises are used with async work: Using Arrow function
+const p2 = new Promise((resolve) => {
+  setTimeout(() => resolve("Hello"), 2000);
+});
+
+p2.then((value) => {
+    console.log(value);
 });
 
 
@@ -85,6 +105,26 @@ Expected Output:
 (5 second pause)
 4️⃣ resolve(value)
 5️⃣ .then receives value: ✅ Task Result Ready
+
+---------------------------------------
+
+Using Reject:
+
+const myPromise = new Promise((resolve, reject) => {
+  const success = false;
+
+  if (success) {
+    resolve("Task completed");
+  } else {
+    reject("Task failed");
+  }
+});
+
+myPromise
+  .then(result => console.log("Success:", result))
+  .catch(error => console.log("Error:", error));
+
+-------------------------------------
 
 5. Async/Await — Same Flow Example
 
@@ -164,23 +204,7 @@ Only pauses inside that async function — not whole JS.
 
 8. Another example: 
 
-function fakeApi() {
-  setTimeout(() => {
-    console.log("API returned data");
-  }, 2000);
-}
-
-console.log("Call API");
-fakeApi();
-console.log("Continue UI");
-
-9. Expected Output: 
-Call API
-Continue UI
-API returned data
-
-
-10. Modern Style: async / await
+Modern Style: async / await
 
 Same Promise — cleaner syntax.
 
@@ -201,4 +225,4 @@ run();
 ✅ Output
 Before
 (after 2 sec)
-After: OK
+After: OK 
