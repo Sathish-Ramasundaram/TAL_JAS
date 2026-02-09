@@ -29,11 +29,15 @@ if (tasks[0].completed) {
 }
 
 
+console.log("-------------------------");
+
+
 // ✅ FOR LOOP
 for (let i = 0; i < tasks.length; i++) {
-  console.log("Task:", tasks[i].title);
+  console.log("Task Name:", tasks[i].title);
 }
 
+console.log("-------------------------");
 
 // ✅ CONTINUE — skip completed tasks
 for (let i = 0; i < tasks.length; i++) {
@@ -47,6 +51,14 @@ for (let i = 0; i < tasks.length; i++) {
 continue means:
 🚫 Skip the rest of this loop turn
 ▶️ Jump to next item
+
+10. Common Confusion: 
+For this example, When all the completed status is false, both continue and break looks work like same.
+
+continue → skip this item
+break → stop the loop
+
+
 
 
 // ✅ BREAK — stop when priority = 3
@@ -73,6 +85,6 @@ break → stop the whole loop
 
 ```
 
-10. Test
+11. Test
 
 

@@ -96,3 +96,24 @@ addTask(3, "Study Functions", 2);
 printTasks(tasks);
 
 console.log("Pending:", countPending(tasks));
+
+------------
+6. return:
+
+// Example 1 → return literal directly
+
+function testReturn() {
+    return "hello";
+}
+
+console.log("This is return:", testReturn());
+
+
+// Example 2 → return stored variable
+
+function test2Return() {
+    const hello = "Hi there"
+    return hello;
+}
+
+console.log("This is return example 2:", test2Return());

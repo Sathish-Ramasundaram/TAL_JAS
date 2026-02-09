@@ -126,6 +126,15 @@ myPromise
 
 -------------------------------------
 
+Promises are used to handle async operations
+
+Old style
+Promise + then/catch pattern
+
+New style
+Promise + async/await pattern
+
+
 5. Async/Await — Same Flow Example
 
 async/await = “Wait for the result, then continue.”

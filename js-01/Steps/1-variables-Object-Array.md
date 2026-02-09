@@ -52,8 +52,26 @@ console.log("Symbol:", internalKey);
 You can either in terminal or in web page using HTML.
 
 node filename.js ----> To run in terminal
+node script.js
 
-3.
+2. Common confusion: 
+null vs Empty Value
+
+null:
+Intentionally no value
+You are saying: “This value is deliberately set to nothing.”
+
+Empty value:
+Value exists — but contains nothing
+
+Examples of empty:
+""      → empty string
+[]      → empty array
+{}      → empty object
+0       → empty number (zero)
+.
+
+3. 
 
 type nul > index.html
 
@@ -105,14 +123,20 @@ const tasks = [task1, task2];
 
 // Access object property
 console.log("First task title:", task1.title);
+console.log("First task completion status:", task1.completed)
+
+console.log("-----------------------------------------------");
 
 // Access array item
 console.log("Second task:", tasks[1]);
+
+console.log("-----------------------------------------------");
 
 // Change value
 tasks[0].completed = true;
 
 console.log("Updated tasks:", tasks);
+
 
 ```
 
