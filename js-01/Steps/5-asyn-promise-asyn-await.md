@@ -55,12 +55,10 @@ That’s exactly how Promise works.
 
 simple one: 
 
-// Step 1: Create Promise
 const p = new Promise(function (resolve) { 
 resolve("Hello"); 
 }); 
 
-// Step 2: Use the result with .then()
 p.then(function (value) { 
 console.log(value); 
 });
@@ -110,19 +108,21 @@ Expected Output:
 
 Using Reject:
 
-const myPromise = new Promise((resolve, reject) => {
-  const success = false;
+const status = false;
 
-  if (success) {
-    resolve("Task completed");
-  } else {
-    reject("Task failed");
-  }
-});
+function getTask() {
+  return new Promise((resolve, reject) => {
+    if (status) {
+      resolve("Task completed");
+    } else {
+      reject("Task failed");
+    }
+  });
+}
 
-myPromise
-  .then(result => console.log("Success:", result))
-  .catch(error => console.log("Error:", error));
+getTask()
+  .then(result => console.log("SUCCESS:", result))
+  .catch(error => console.log("ERROR:", error));
 
 -------------------------------------
 
@@ -148,90 +148,71 @@ You wait — then make tea.
 👉 async/await USES Promise internally
 👉 No Promise → no await
 
+-----------------
 
-Tiny Example: 
+const status = false;
 
-async function run() {
-  await new Promise(r => setTimeout(r, 2000));
-  console.log("Done");
-}
-
-run();
-
-----------------------
-
-```
-
-function createTaskPromise() {
-  console.log("1️⃣ Create Promise");
-
-  return new Promise(function (resolve, reject) {
-    console.log("2️⃣ Async work starts");
-
-    setTimeout(function () {
-      console.log("4️⃣ resolve(value)");
-      resolve("✅ Task Result Ready");
-    }, 2000);
+function getTask() {
+  return new Promise((resolve, reject) => {
+    if (status) {
+      resolve("Task completed");
+    } else {
+      reject("Task failed");
+    }
   });
 }
 
-
-async function runTask() {
-  console.log("3️⃣ JS continues running (inside async function)");
-
-  const result = await createTaskPromise();
-
-  console.log("5️⃣ await receives value:", result);
-}
-
-runTask();
-
-```
-6. Expected output: 
-
-3️⃣ JS continues running (inside async function)
-1️⃣ Create Promise
-2️⃣ Async work starts
-(2 sec pause)
-4️⃣ resolve(value)
-5️⃣ await receives value: ✅ Task Result Ready
-
-
-7. Old style:
-promise.then(result => ...)
-
-New style:
-const result = await promise
-Cleaner. Linear. Easier to read.
-That’s why React code uses:
-
-const data = await fetch(...)
-
-✅ One Line Rule
-await = “pause this function until Promise finishes”
-Only pauses inside that async function — not whole JS.
-
-8. Another example: 
-
-Modern Style: async / await
-
-Same Promise — cleaner syntax.
-
-Paste:
-
-function wait() {
-  return new Promise(r => setTimeout(() => r("OK"), 2000));
-}
-
 async function run() {
-  console.log("Before");
-  const result = await wait();
-  console.log("After:", result);
+  try {
+    const result = await getTask();
+    console.log("SUCCESS:", result);
+  } catch (error) {
+    console.log("ERROR:", error);
+  }
 }
 
 run();
 
-✅ Output
-Before
-(after 2 sec)
-After: OK 
+-----------------
+
+with setTimeout: 
+Step 1: 
+
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timer finished");
+}, 2000);
+
+console.log("End");
+
+
+Step 2: 
+
+function wait2Sec() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve("Done waiting"), 2000);
+  });
+}
+
+wait2Sec().then(v => console.log(v));
+
+step 3: 
+
+function wait2Sec() {
+  return new Promise(resolve => {
+    setTimeout(() => resolve("Done waiting"), 2000);
+  });
+}
+
+async function run() {
+  console.log("Before wait");
+
+  const msg = await wait2Sec();
+
+  console.log("After wait:", msg);
+}
+
+run();
+
+console.log("Outside function");

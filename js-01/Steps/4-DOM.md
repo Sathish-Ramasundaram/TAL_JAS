@@ -23,6 +23,20 @@
 
 15. update js:
 
+Simple: 
+const tasks = [ "Hello", "Buy", "Cook"];
+
+
+const container = document.getElementById("task");
+
+for (let i = 0; i < tasks.length; i++) {
+  const p = document.createElement("p");
+  p.textContent = tasks[i];
+  container.appendChild(p);
+}
+
+---------------------------------
+
 const tasks = [
 { id: 1, title: "Learn Variables", completed: true },
 { id: 2, title: "Practice Objects", completed: false },
@@ -39,8 +53,7 @@ for (let i = 0; i < tasks.length; i++) {
   container.appendChild(p);
 }
 
-
-
+-------------------------------------------
 
 
 // ✅ select DOM element

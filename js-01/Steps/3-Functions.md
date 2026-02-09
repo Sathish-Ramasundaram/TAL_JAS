@@ -75,30 +75,9 @@ tasks.push(newTask);
 
 addTask(4, "Study Functions", 2);
 
-// ✅ FUNCTION — count pending
-function countPending(taskList) {
-let count = 0;
+-------
 
-for (let i = 0; i < taskList.length; i++) {
-if (!taskList[i].completed) {
-count++;
-}
-}
-
-return count;
-}
-
-// ▶ call functions
-printTasks(tasks);
-
-addTask(3, "Study Functions", 2);
-
-printTasks(tasks);
-
-console.log("Pending:", countPending(tasks));
-
-------------
-6. return:
+return:
 
 // Example 1 → return literal directly
 
@@ -117,3 +96,29 @@ function test2Return() {
 }
 
 console.log("This is return example 2:", test2Return());
+
+--------
+
+const tasks = [
+{ id: 1, title: "Learn Variables", completed: true, priority: 1 },
+{ id: 2, title: "Practice Objects", completed: false, priority: 2 },
+{ id: 3, title: "Learn Loop", completed: false, priority: 3 }
+];
+
+// ✅ FUNCTION — count pending
+function countPending(taskList) {
+let count = 0;
+
+for (let i = 0; i < taskList.length; i++) {
+if (!taskList[i].completed) {
+count++;
+}
+}
+
+return count;
+}
+
+console.log("No of Pending Tasks:", countPending(tasks));
+
+
+------------

@@ -59,8 +59,6 @@ continue → skip this item
 break → stop the loop
 
 
-
-
 // ✅ BREAK — stop when priority = 3
 for (let i = 0; i < tasks.length; i++) {
   if (tasks[i].priority === 3) {

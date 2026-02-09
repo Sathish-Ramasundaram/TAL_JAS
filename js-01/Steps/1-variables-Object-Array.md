@@ -69,7 +69,7 @@ Examples of empty:
 []      → empty array
 {}      → empty object
 0       → empty number (zero)
-.
+
 
 3. 
 
