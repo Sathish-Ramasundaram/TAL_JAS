@@ -2,15 +2,33 @@ Smart Task Tracker
 
 1. Variables & Data Types
 
-A task has:
-title
-completed or not
-priority number
-due date (optional → null)
-unique id (bigint demo)
-extra note (undefined demo)
+var — Old Style (Avoid in New Code)
+var x = 10;
 
-2.
+Problems:
+function scoped
+hoisting confusion
+redeclaration allowed
+Modern rule:
+Prefer let and const
+
+
+Data Types:
+JavaScript Has 2 Main Categories
+1️⃣ Primitive types
+2️⃣ Reference (Object) types
+
+Primitive Data Types (Basic Values)
+These store single values.
+
+Reference Type (Object Family)
+These store collections of values.
+Object — Key/Value Structure
+Arrays (Special Object)
+Stores list of values.
+
+----------------------------------
+
 
 type nul > script.js
 

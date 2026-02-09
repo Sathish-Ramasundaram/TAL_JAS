@@ -23,17 +23,13 @@
 
 15. update js:
 
-Simple: 
-const tasks = [ "Hello", "Buy", "Cook"];
+Mini Example for below one:
+const ul = document.getElementById("taskList");
 
+const li = document.createElement("li");
+li.textContent = "Hello Task";
 
-const container = document.getElementById("task");
-
-for (let i = 0; i < tasks.length; i++) {
-  const p = document.createElement("p");
-  p.textContent = tasks[i];
-  container.appendChild(p);
-}
+ul.appendChild(li);
 
 ---------------------------------
 
@@ -43,23 +39,15 @@ const tasks = [
 { id: 3, title: "Study Functions", completed: false }
 ];
 
+const books = [
+  { sl: 1, title: "Apple", completed: false},
+  { sl: 2, title: "Carrot", completed: false},
+  { sl: 3, title: "Banana", completed: true},
+];
 
 
-const container = document.getElementById("pTask");
-
-for (let i = 0; i < tasks.length; i++) {
-  const p = document.createElement("p");
-  p.textContent = tasks[i].title;
-  container.appendChild(p);
-}
-
--------------------------------------------
-
-
-// ✅ select DOM element
 const listElement = document.getElementById("taskList");
 
-// ✅ function to render tasks to page
 function renderTasks(taskList) {
 listElement.innerHTML = ""; // clear first
 
@@ -72,14 +60,7 @@ li.textContent = taskList[i].title;
 }
 }
 
-// ▶ call it
 renderTasks(tasks);
+renderTasks(books);
 
-Mini Example for above one:
 
-const ul = document.getElementById("taskList");
-
-const li = document.createElement("li");
-li.textContent = "Hello Task";
-
-ul.appendChild(li);

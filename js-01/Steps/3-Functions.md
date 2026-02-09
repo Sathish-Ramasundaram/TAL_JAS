@@ -1,5 +1,4 @@
 11. Functions
-    🎯 Concept (2 lines)
     A function = reusable block of code
     Write once → call many times with different value
 
@@ -10,6 +9,23 @@ const tasks = [
 { id: 2, title: "Practice Objects", completed: false, priority: 2 },
 { id: 3, title: "Learn Loop", completed: false, priority: 3 }
 ];
+
+
+// ✅ FUNCTION — add new task
+function addTask(id, title, priority) {
+const newTask = {
+id: id,
+title: title,
+completed: false,
+priority: priority
+};
+
+tasks.push(newTask);
+}
+
+addTask(4, "Study Functions", 2);
+addTask(5, "Study GIT", 4);
+
 
 // ✅ FUNCTION — print all tasks
 function printTasks(taskList) {
@@ -61,19 +77,7 @@ printTask(tasks);
 
 ---
 
-// ✅ FUNCTION — add new task
-function addTask(id, title, priority) {
-const newTask = {
-id: id,
-title: title,
-completed: false,
-priority: priority
-};
 
-tasks.push(newTask);
-}
-
-addTask(4, "Study Functions", 2);
 
 -------
 

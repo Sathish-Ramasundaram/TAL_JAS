@@ -107,6 +107,17 @@ Expected Output:
 ---------------------------------------
 
 Using Reject:
+simple version: 
+const ok = false;
+
+new Promise((resolve, reject) => {
+  if (ok) resolve("Good");
+  else reject("Bad");
+})
+.then(v => console.log("SUCCESS:", v))
+.catch(e => console.log("ERROR:", e));
+
+---------------------------------------------------------------------
 
 const status = false;
 
@@ -150,28 +161,26 @@ You wait — then make tea.
 
 -----------------
 
-const status = false;
+const ok = false;
 
-function getTask() {
+function getResult() {
   return new Promise((resolve, reject) => {
-    if (status) {
-      resolve("Task completed");
-    } else {
-      reject("Task failed");
-    }
+    if (ok) resolve("Good");
+    else reject("Bad");
   });
 }
 
 async function run() {
   try {
-    const result = await getTask();
-    console.log("SUCCESS:", result);
-  } catch (error) {
-    console.log("ERROR:", error);
+    const v = await getResult();
+    console.log("SUCCESS:", v);
+  } catch (e) {
+    console.log("ERROR:", e);
   }
 }
 
 run();
+
 
 -----------------
 
@@ -216,3 +225,9 @@ async function run() {
 run();
 
 console.log("Outside function");
+
+----------------
+
+then/catch = chain style
+async/await = straight-line style
+
