@@ -41,13 +41,25 @@ console.log(add(2,3));
 **Why:** Avoid undefined inputs.
 
 ```javascript
-function greet(name = "Guest") {
-  console.log(name);
+function greet(name = "there") {
+  console.log("Hi ",name);
 }
 greet();
 ```
 
-🖥 Output: `Guest`
+🖥 Output: Hi there
+
+
+Now: 
+
+function greet(name = "there") {
+  console.log("Hi",name);
+}
+greet("Admin");
+
+
+Output:
+Hi Admin
 
 ---
 

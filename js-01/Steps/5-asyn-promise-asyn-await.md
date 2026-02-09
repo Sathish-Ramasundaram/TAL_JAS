@@ -51,31 +51,8 @@ Restaurant closed → rejected ❌
 That’s exactly how Promise works.
 
 
-4. update code: 
+4. Code:
 
-simple one: 
-
-const p = new Promise(function (resolve) { 
-resolve("Hello"); 
-}); 
-
-p.then(function (value) { 
-console.log(value); 
-});
-
-
-
-// Normally Promises are used with async work: Using Arrow function
-const p2 = new Promise((resolve) => {
-  setTimeout(() => resolve("Hello"), 2000);
-});
-
-p2.then((value) => {
-    console.log(value);
-});
-
-
-----------------------------------
 
 console.log("1️⃣ Create Promise");
 
@@ -106,8 +83,77 @@ Expected Output:
 
 ---------------------------------------
 
-Using Reject:
 simple version: 
+---------------
+
+new Promise(resolve => {
+  resolve("Hello");
+})
+.then(q => console.log(q));
+
+Real Promises are usually used for:
+async work
+delay
+API calls
+success vs failure
+
+
+
+Add delay:
+
+new Promise(resolve => {
+  setTimeout(() => resolve("Hello"), 1000);
+})
+.then(q => console.log(q));
+
+console.log("Start");
+
+
+
+Promise with resolve + reject + catch:
+
+const ok = false;
+
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (ok) resolve("Hello");
+    else reject("Failed");
+  }, 1000);
+})
+.then(q => console.log("SUCCESS:", q))
+.catch(e => console.log("ERROR:", e));
+
+console.log("Start");
+
+
+asyn/await version: 
+
+const ok = false;
+
+function getData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (ok) resolve("Hello");
+      else reject("Failed");
+    }, 1000);
+  });
+}
+
+async function run() {
+  try {
+    const q = await getData();
+    console.log("SUCCESS:", q);
+  } catch (e) {
+    console.log("ERROR:", e);
+  }
+}
+
+console.log("Start");
+run();
+
+
+
+------------------
 const ok = false;
 
 new Promise((resolve, reject) => {
@@ -230,4 +276,30 @@ console.log("Outside function");
 
 then/catch = chain style
 async/await = straight-line style
+
+
+Simple Code: 
+
+function wait() {
+  return new Promise(resolve =>
+    setTimeout(() => resolve("Server Ready"), 2000)
+  );
+}
+
+async function run() {
+  console.log("Preparing to go live...");
+
+  const msg = await wait();
+
+  console.log(msg);
+  console.log("We are live now.");
+}
+
+run();
+
+
+Note: 
+Promise → produces value
+await → receives value
+
 

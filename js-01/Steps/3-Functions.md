@@ -75,9 +75,6 @@ printTask(tasks);
 
 → Reusable abstraction
 
----
-
-
 
 -------
 

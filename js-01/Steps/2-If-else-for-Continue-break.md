@@ -28,6 +28,16 @@ if (tasks[0].completed) {
   console.log("Task 1 is pending");
 }
 
+// For and IF / ELSE
+
+for (i = 0; i < tasks.length; i++) {
+  if (tasks[i].completed) {
+    console.log('Task Name: ', tasks[i].title, 'is completed');
+  } else {
+    console.log('Task Name: ', tasks[i].title, ' is pending');
+  }
+}
+
 
 console.log("-------------------------");
 
