@@ -18,14 +18,41 @@ debugger;
 # ✅ 2️⃣ Breakpoints (Step Debugging)
 
 **What:** Pause code at a line and run step-by-step.
-**Why:** See variable values while code runs.
 
-```javascript
-let a = 5;
-let b = a + 2; // set breakpoint here
+Why: Find bugs and understand flow
+Breakpoints help you:
+see variable values
+track logic errors
+understand execution order
+debug async behavior
+avoid too many console.logs
+
+Simple Example
+
 ```
 
-👉 DevTools → Sources → click line number.
+function add(a, b) {
+  const result = a + b;   // ← set breakpoint here
+  return result;
+}
+
+add(2, 3);
+
+```
+
+
+When execution pauses:
+you can see a, b, result
+step through next lines
+
+✅ How to Set Breakpoint (Chrome / Edge DevTools)
+
+Open page
+Press F12
+Go to Sources tab
+Open your JS file
+Click line number → blue dot appears = breakpoint
+Refresh page → execution pauses there
 
 ---
 
@@ -59,11 +86,26 @@ finally { console.log("Always runs"); }
 **What:** Test small pieces of code automatically.
 **Why:** Ensures functions work correctly.
 
-```javascript
-expect(add(2,3)).toBe(5);
-```
+Example: 
 
-(Example style from Jest)
+try {
+  let x = y + 1;   // y not defined → error
+} catch (err) {
+  console.log("Error caught:", err.message);
+}
+
+console.log("App still running");
+
+
+Output: 
+Error caught: y is not defined
+App still running
+
+
+-----------------
+
+try…catch…finally
+finally runs always — error or not.
 
 ---
 

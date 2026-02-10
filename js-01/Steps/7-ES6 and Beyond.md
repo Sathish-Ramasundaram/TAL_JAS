@@ -1,5 +1,3 @@
-Perfect 👍 — you want **ES6 and beyond features** explained in **very simple words**, each in **2 lines + tiny example**.
-No overload — classroom friendly.
 
 ---
 
@@ -25,6 +23,14 @@ console.log(`Hello ${name}`);
 
 **What:** Short function syntax using `=>`
 **Why:** Cleaner and shorter than normal functions.
+
+Normal Function: 
+function add(a, b) {
+  return a + b;
+}
+
+console.log(add(2, 3));
+
 
 ```javascript
 const add = (a, b) => a + b;
@@ -83,14 +89,69 @@ console.log(name);
 **What:** Blueprint to create objects
 **Why:** Cleaner object-oriented style.
 
-```javascript
-class User {
-  constructor(name){ this.name = name; }
-}
-console.log(new User("Sam").name);
-```
+Class = Design
+Object = Actual item built from design
 
-🖥 Output: `Sam`
+
+class User {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+
+const user1 = new User("Arun", 20);
+console.log(user1);
+
+const user2 = new User("Ram", 22);
+console.log(user2);
+
+Output: 
+User { name: 'Ana', age: 20 }
+User { name: 'Ram', age: 22 }
+
+
+class User → blueprint
+new User(...) → object created from blueprint
+
+Next Step (Recommended)
+
+Usually classes also include methods:
+
+class User {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  greet() {
+    return `Hi, I am ${this.name}`;
+  }
+}
+
+
+
+Add One Simple Method (optional but useful)
+class User {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  info() {
+    return `${this.name} is ${this.age} years old`;
+  }
+}
+
+const user = new User("Ana", 20);
+
+console.log(user.info());
+
+
+Output:
+
+Ana is 20 years old
+
 
 ---
 
@@ -99,14 +160,19 @@ console.log(new User("Sam").name);
 **What:** Split code into files
 **Why:** Organize large projects.
 
-```javascript
-// export.js
-export const x = 5;
-```
+math.js
+export function add(a, b) {
+  return a + b;
+}
 
-```javascript
-import { x } from "./export.js";
-```
+script.js
+import { add } from "./math.js";
+
+console.log(add(2, 3));
+
+
+update HTML:
+<script type="module" src="script.js"></script>
 
 ---
 

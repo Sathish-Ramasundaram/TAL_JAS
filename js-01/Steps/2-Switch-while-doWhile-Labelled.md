@@ -1,28 +1,29 @@
 Switch: 
 
-let priority = 2;
+let priority = 1;
 
 switch (priority) {
-  case 1:
-    console.log("Low");
-    break;
 
+   case 1:
+    console.log("Send alert + assign immediately");
+    break;
+  
   case 2:
-    console.log("Medium");
+    console.log("Assign to sprint");
     break;
 
-  case 3:
-    console.log("High");
+    case 3:
+    console.log("Add to backlog");
     break;
+
 
   default:
-    console.log("Unknown");
+    console.log("Needs manual review");
 }
 
 
 Output: 
-Medium
-
+Send alert + assign immediately
 
 
 2. while     = check before entering room

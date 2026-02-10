@@ -86,7 +86,7 @@ Expected Output:
 simple version: 
 ---------------
 
-new Promise(resolve => {
+new Promise((resolve, reject) => {
   resolve("Hello");
 })
 .then(q => console.log(q));
@@ -101,8 +101,8 @@ success vs failure
 
 Add delay:
 
-new Promise(resolve => {
-  setTimeout(() => resolve("Hello"), 1000);
+new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Hello after 1 second"), 1000);
 })
 .then(q => console.log(q));
 
@@ -112,18 +112,22 @@ console.log("Start");
 
 Promise with resolve + reject + catch:
 
-const ok = false;
+const status = false;
 
-new Promise((resolve, reject) => {
-  setTimeout(() => {
-    if (ok) resolve("Hello");
-    else reject("Failed");
-  }, 1000);
-})
-.then(q => console.log("SUCCESS:", q))
-.catch(e => console.log("ERROR:", e));
+function getTask() {
+  return new Promise((resolve, reject) => {
+    if (status) {
+      resolve("Task completed");
+    } else {
+      reject("Task failed");
+    }
+  });
+}
 
-console.log("Start");
+getTask()
+  .then(result => console.log("SUCCESS:", result))
+  .catch(error => console.log("ERROR:", error));
+
 
 
 asyn/await version: 
@@ -151,35 +155,6 @@ async function run() {
 console.log("Start");
 run();
 
-
-
-------------------
-const ok = false;
-
-new Promise((resolve, reject) => {
-  if (ok) resolve("Good");
-  else reject("Bad");
-})
-.then(v => console.log("SUCCESS:", v))
-.catch(e => console.log("ERROR:", e));
-
----------------------------------------------------------------------
-
-const status = false;
-
-function getTask() {
-  return new Promise((resolve, reject) => {
-    if (status) {
-      resolve("Task completed");
-    } else {
-      reject("Task failed");
-    }
-  });
-}
-
-getTask()
-  .then(result => console.log("SUCCESS:", result))
-  .catch(error => console.log("ERROR:", error));
 
 -------------------------------------
 

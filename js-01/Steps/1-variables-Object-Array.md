@@ -1,7 +1,21 @@
-Smart Task Tracker
-
 1. Variables & Data Types
 
+-> var, let, const
+
+let → variable can be reassigned
+let x = 10;
+x = 20;   // ✅ allowed
+
+const → variable cannot be reassigned
+const x = 10;
+x = 20;   // ❌ error
+
+But for objects/arrays:
+const arr = [1,2,3];
+arr.push(4);   // ✅ allowed (mutation)
+arr = [5,6];   // ❌ not allowed (reassignment
+
+-----------------------------------
 var — Old Style (Avoid in New Code)
 var x = 10;
 
@@ -50,6 +64,153 @@ only inside if block
 not outside
 
 ------------------------------------
+
+Hoisting = JavaScript moves variable declarations to the top of their scope before running code.
+
+```
+declaration moves
+assignment does NOT move
+```
+**What is “hoisting confusion” with `var`?**
+
+
+# ✅ Example — var Hoisting Confusion
+
+## Code
+
+```javascript
+console.log(x);
+var x = 10;
+```
+
+---
+
+## 🖥 Output
+
+```
+undefined
+```
+
+---
+
+## 😲 Why Not Error?
+
+Because JS internally treats it like this:
+
+```javascript
+var x;          // moved to top (hoisted)
+console.log(x); // exists but not assigned → undefined
+x = 10;
+```
+
+This surprises beginners — hence **hoisting confusion**.
+
+---
+
+# ✅ Compare — let / const (No Confusion)
+
+```javascript
+console.log(y);
+let y = 10;
+```
+
+---
+
+## 🖥 Output
+
+```
+ReferenceError
+```
+
+Much clearer and safer.
+
+That’s why modern JS prefers:
+
+```
+let
+const
+```
+
+---
+
+# ✅ Bigger Hoisting Trap — var Inside Function
+
+## Code
+
+```javascript
+function test() {
+  console.log(a);
+  var a = 5;
+}
+
+test();
+```
+
+---
+
+## 🖥 Output
+
+```
+undefined
+```
+
+Because internally:
+
+```javascript
+function test() {
+  var a;
+  console.log(a);
+  a = 5;
+}
+```
+
+---
+
+# ✅ Real Confusion Case — Shadowing
+
+```javascript
+var a = 1;
+
+function demo() {
+  console.log(a);
+  var a = 2;
+}
+
+demo();
+```
+
+---
+
+## 🖥 Output
+
+```
+undefined
+```
+
+Students expect `1` — but get undefined.
+
+Because inner `var a` is hoisted inside function.
+
+---
+
+# ✅ Why This Is Called “Hoisting Confusion”
+
+Because:
+
+```
+variable appears usable before declared
+but value is undefined
+```
+
+This leads to:
+
+* hidden bugs
+* wrong assumptions
+* debugging difficulty
+
+---
+
+
 
 Data Types:
 JavaScript Has 2 Main Categories
@@ -111,11 +272,10 @@ node filename.js ----> To run in terminal
 node script.js
 
 2. Common confusion: 
-null vs Empty Value
+null vs Empty Value vs undefined
 
 null:
-Intentionally no value
-You are saying: “This value is deliberately set to nothing.”
+There is intentionally no value.
 
 Empty value:
 Value exists — but contains nothing
@@ -126,6 +286,11 @@ Examples of empty:
 {}      → empty object
 0       → empty number (zero)
 
+undefined means:
+A variable exists, but no value has been assigned yet.
+
+let x;
+console.log(x); // undefined
 
 3. 
 
