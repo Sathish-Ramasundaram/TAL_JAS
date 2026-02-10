@@ -67,6 +67,14 @@ do {
   choice = "exit"; // simulate user choice
 } while (choice !== "exit");
 
+Another example: 
+let choice;
+do {
+  console.log("Hello. Type exit to quit");
+  choice = prompt("Enter choice");
+} while (choice !== "exit");
+
+
 ----------------
 
 4. Labelled Statement:
@@ -148,6 +156,32 @@ everything stops immediately
 
 ---------------------
 
+Continue: 
+for (let i=1; i<5; i++){
+    for(let j=1; j<5; j++){
+        if( j === 3) 
+            continue;
+        console.log(i,j);
+
+    }
+
+}
+
+Output: 
+1 1
+1 2
+1 4
+2 1
+2 2
+2 4
+3 1 
+3 2
+3 4 
+4 1
+4 2
+4 4
+
+
 Label + continue Example (Simple)
 
 Skip to next outer loop round.
@@ -155,15 +189,20 @@ Skip to next outer loop round.
 outer:
 for (let i = 1; i <= 3; i++) {
   for (let j = 1; j <= 3; j++) {
-    if (j === 2) continue outer;
+    if (j === 3) continue outer;
     console.log(i, j);
   }
 }
 
 Output
 1 1
+1 2
 2 1
+2 2
 3 1
+3 2
+4 1
+4 2
 
 
-When j = 2 → jump to next i
+When j = 3 → jump to next i

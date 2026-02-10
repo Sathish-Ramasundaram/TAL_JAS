@@ -1,21 +1,15 @@
 1. Variables & Data Types
 
+let x = 10;
+let → declaration keyword
+x   → variable name
+10  → value
+number → data type
+
+Variable Declaration: 
+--------------------
 -> var, let, const
 
-let → variable can be reassigned
-let x = 10;
-x = 20;   // ✅ allowed
-
-const → variable cannot be reassigned
-const x = 10;
-x = 20;   // ❌ error
-
-But for objects/arrays:
-const arr = [1,2,3];
-arr.push(4);   // ✅ allowed (mutation)
-arr = [5,6];   // ❌ not allowed (reassignment
-
------------------------------------
 var — Old Style (Avoid in New Code)
 var x = 10;
 
@@ -25,6 +19,23 @@ hoisting confusion
 redeclaration allowed
 Modern rule:
 Prefer let and const
+
+----------------------------------------
+let → variable can be reassigned
+let x = 10;
+x = 20;   // ✅ allowed
+
+------------------------------------------
+const → variable cannot be reassigned
+const x = 10;
+x = 20;   // ❌ error
+
+But for objects/arrays:
+const arr = [1,2,3];
+arr.push(4);   // ✅ allowed (mutation)
+arr = [5,6];   // ❌ not allowed (reassignment)
+
+------------------------------------------
 
 function scoped: 
 A var variable is visible everywhere inside the entire function, not just inside { } blocks.
@@ -63,7 +74,7 @@ let respects { } block.
 only inside if block
 not outside
 
-------------------------------------
+----------------------------------------------
 
 Hoisting = JavaScript moves variable declarations to the top of their scope before running code.
 
@@ -72,7 +83,6 @@ declaration moves
 assignment does NOT move
 ```
 **What is “hoisting confusion” with `var`?**
-
 
 # ✅ Example — var Hoisting Confusion
 
@@ -146,8 +156,6 @@ function test() {
 test();
 ```
 
----
-
 ## 🖥 Output
 
 ```
@@ -193,24 +201,6 @@ Because inner `var a` is hoisted inside function.
 
 ---
 
-# ✅ Why This Is Called “Hoisting Confusion”
-
-Because:
-
-```
-variable appears usable before declared
-but value is undefined
-```
-
-This leads to:
-
-* hidden bugs
-* wrong assumptions
-* debugging difficulty
-
----
-
-
 
 Data Types:
 JavaScript Has 2 Main Categories
@@ -235,9 +225,13 @@ type nul > script.js
 
 // STRING
 let taskTitle = "Learn JavaScript Basics";
+console.log("Title:", taskTitle);
+console.log("Type of Title:", typeof(taskTitle));
 
 // NUMBER
 let priority = 1;
+console.log("Priority:", priority);
+console.log("Type of Priority:", typeof(priority));
 
 // BOOLEAN
 let isCompleted = false;
@@ -256,8 +250,8 @@ let taskId = 9007199254740993n;
 // SYMBOL (unique internal key)
 let internalKey = Symbol("taskKey");
 
-console.log("Title:", taskTitle);
-console.log("Priority:", priority);
+
+
 console.log("Completed:", isCompleted);
 console.log("Due date:", dueDate);
 console.log("Note:", note);

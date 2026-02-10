@@ -62,8 +62,23 @@ Refresh page → execution pauses there
 **Why:** Prevents app crash.
 
 ```javascript
-try { x.y } 
-catch(e) { console.log("Error caught"); }
+try {
+  const num = "Welcome";
+  console.log(num.toUpperCase()); 
+} catch (error) {
+  console.log(error.message);
+}
+
+```
+
+```
+try {
+  const num = 12;
+  console.log(num.toUpperCase()); 
+} catch (error) {
+  console.log(error.message);
+}
+
 ```
 
 ---
@@ -74,10 +89,49 @@ catch(e) { console.log("Error caught"); }
 **Why:** Good for cleanup actions.
 
 ```javascript
-try { run() }
-catch {}
-finally { console.log("Always runs"); }
+try {
+  const num = "Welcome";
+  console.log(num.toUpperCase());
+} catch (error) {
+  console.log(error.message);
+} finally {
+  console.log("Finished execution");
+}
+
 ```
+
+finally block:
+👉 Runs always
+whether error happens or not
+whether catch runs or not
+even if there is a return inside try/catch
+
+Finally is optional.
+
+You can write:
+try + catch
+try + finally
+try + catch + finally
+All are valid.
+
+✅ When finally Is Useful
+Use finally when you must always run cleanup code:
+close DB connection
+stop loader/spinner
+release resource
+hide modal
+clear timer
+
+Example:
+
+try {
+  startLoader();
+  riskyWork();
+} catch (e) {
+  console.log(e);
+} finally {
+  stopLoader(); // must always happen
+}
 
 ---
 
@@ -87,25 +141,47 @@ finally { console.log("Always runs"); }
 **Why:** Ensures functions work correctly.
 
 Example: 
+type nul > math.js
 
-try {
-  let x = y + 1;   // y not defined → error
-} catch (err) {
-  console.log("Error caught:", err.message);
+```
+
+function add(a, b) {
+  return a + b;
 }
 
-console.log("App still running");
+module.exports = { add };
 
 
-Output: 
-Error caught: y is not defined
-App still running
+
+```
+type nul > math.test.js
+
+```
+const { add } = require("./math");
+
+test("adds 2 + 3 to equal 5", () => {
+  expect(add(2, 3)).toBe(5);
+});
 
 
------------------
+```
+Run: 
+npm test
 
-try…catch…finally
-finally runs always — error or not.
+Note: We require necessary package. 
+Install
+npm init -y
+this create package.json
+
+Then install Jest (if you want unit testing):
+npm install jest --save-dev
+
+Add test script inside package.json:
+
+"scripts": {
+  "test": "jest"
+}
+
 
 ---
 

@@ -5,9 +5,13 @@ Asynchronous = starts work → continues → result comes later
 
 setTimeout(function() {
     console.log("Print after 4 sec");
-}, 4000);
+}, 2000);
 
+setTimeout(() => {
+    console.log("Arrow function print after 2 seconds");
+},2000);
 
+-------------------------
 console.log("Start");
 
 setTimeout(function () {
@@ -16,20 +20,11 @@ setTimeout(function () {
 
 console.log("End");
 
-setTimeout(() => {
-  console.log("Print after 4 sec. This arrow function");
-}, 4000);
-
+-------------------------
 
 2. Test: 
 
-Start
-End
-Print after 4 sec
-Print after 4 sec. This arrow function
-Task finished after 5 seconds
-
-Because setTimeout is async — it runs later.
+setTimeout is async — it runs later.
 
 
 3. Promise (clean async container)
@@ -49,204 +44,105 @@ Food delivered → resolved ✅
 Restaurant closed → rejected ❌
 
 That’s exactly how Promise works.
-
+Come from down to top
 
 4. Code:
 
 
-console.log("1️⃣ Create Promise");
-
-const myPromise = new Promise(function (resolve, reject) {
-
-  console.log("2️⃣ Async work starts");
-
-  setTimeout(function () {
-    console.log("4️⃣ resolve(value)");
-    resolve("✅ Task Result Ready");
-  }, 5000);
-
-});
-
-console.log("3️⃣ JS continues running");
-
-myPromise.then(function (result) {
-  console.log("5️⃣ .then receives value:", result);
-});
-
-Expected Output: 
-1️⃣ Create Promise
-2️⃣ Async work starts
-3️⃣ JS continues running
-(5 second pause)
-4️⃣ resolve(value)
-5️⃣ .then receives value: ✅ Task Result Ready
-
----------------------------------------
-
-simple version: 
----------------
-
-new Promise((resolve, reject) => {
-  resolve("Hello");
-})
-.then(q => console.log(q));
-
-Real Promises are usually used for:
-async work
-delay
-API calls
-success vs failure
-
-
-
-Add delay:
-
-new Promise((resolve, reject) => {
-  setTimeout(() => resolve("Hello after 1 second"), 1000);
-})
-.then(q => console.log(q));
-
-console.log("Start");
-
-
-
-Promise with resolve + reject + catch:
 
 const status = false;
 
 function getTask() {
   return new Promise((resolve, reject) => {
-    if (status) {
-      resolve("Task completed");
-    } else {
-      reject("Task failed");
-    }
+
+    setTimeout(() => {
+      if (status) {
+        resolve("Task Completed");
+      } else {
+        reject("Task failed");
+      }
+    }, 2000);
+
   });
 }
 
 getTask()
-  .then(result => console.log("SUCCESS:", result))
-  .catch(error => console.log("ERROR:", error));
-
-
-
-asyn/await version: 
-
-const ok = false;
-
-function getData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (ok) resolve("Hello");
-      else reject("Failed");
-    }, 1000);
-  });
-}
-
-async function run() {
-  try {
-    const q = await getData();
-    console.log("SUCCESS:", q);
-  } catch (e) {
-    console.log("ERROR:", e);
-  }
-}
-
-console.log("Start");
-run();
-
+  .then(msg => console.log("SUCCESS:", msg))
+  .catch(err => console.log("ERROR:", err));
 
 -------------------------------------
 
-Promises are used to handle async operations
+Promise.resolve("Done")
+  .then(v => console.log(v));
 
-Old style
-Promise + then/catch pattern
+-----------------------------------------------------------
+const status = false;
 
-New style
-Promise + async/await pattern
-
-
-5. Async/Await — Same Flow Example
-
-async/await = “Wait for the result, then continue.”
-
-Real-Life Example — Making Tea 
-You start boiling water — it takes time.
-You wait — then make tea.
+function getTask() {
+  setTimeout(() => {
+    if (status) {
+      console.log("status true");
+    } else {
+      console.log("status false");
+    }
+  }, 2000);
+}
 
 
-👉 async/await does NOT replace Promise
-👉 async/await USES Promise internally
-👉 No Promise → no await
+---------------------------------------------------
 
------------------
+function getTask() {
+    setTimeout(() => {
+        console.log("Just getTask function with setTimeout 2 second delay");
+    }, 2000)
+}
 
-const ok = false;
+getTask();
 
-function getResult() {
+-------------------------------------------------
+
+function getTask() {
+console.log("Just function");
+}
+
+getTask();
+
+
+-----------------------------------
+
+Convert to async / await
+
+Rules:
+await can only be used inside an async function
+try/catch replaces .then/.catch
+
+const status = false;
+
+function getTask() {
   return new Promise((resolve, reject) => {
-    if (ok) resolve("Good");
-    else reject("Bad");
+    setTimeout(() => {
+      if (status) {
+        resolve("Task Completed");
+      } else {
+        reject("Task failed");
+      }
+    }, 2000);
   });
 }
 
-async function run() {
+async function runTask() {
   try {
-    const v = await getResult();
-    console.log("SUCCESS:", v);
-  } catch (e) {
-    console.log("ERROR:", e);
+    const msg = await getTask();
+    console.log("SUCCESS:", msg);
+  } catch (err) {
+    console.log("ERROR:", err);
   }
 }
 
-run();
+runTask();
 
 
------------------
-
-with setTimeout: 
-Step 1: 
-
-console.log("Start");
-
-setTimeout(() => {
-  console.log("Timer finished");
-}, 2000);
-
-console.log("End");
-
-
-Step 2: 
-
-function wait2Sec() {
-  return new Promise(resolve => {
-    setTimeout(() => resolve("Done waiting"), 2000);
-  });
-}
-
-wait2Sec().then(v => console.log(v));
-
-step 3: 
-
-function wait2Sec() {
-  return new Promise(resolve => {
-    setTimeout(() => resolve("Done waiting"), 2000);
-  });
-}
-
-async function run() {
-  console.log("Before wait");
-
-  const msg = await wait2Sec();
-
-  console.log("After wait:", msg);
-}
-
-run();
-
-console.log("Outside function");
-
+____________________________________________
 ----------------
 
 then/catch = chain style

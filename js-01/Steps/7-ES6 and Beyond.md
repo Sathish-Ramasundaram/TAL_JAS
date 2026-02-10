@@ -11,11 +11,24 @@
 **Why:** Insert variables inside strings cleanly.
 
 ```javascript
-let name = "Sam";
-console.log(`Hello ${name}`);
+const name = "Bond"
+console.log(`The name is ${name}`);
 ```
 
-🖥 Output: `Hello Sam`
+🖥 Output: 
+The name is Bond.
+
+
+Commonly used: 
+
+const user = {
+  name: "Bond",
+  id: 7,
+  active: true
+};
+
+console.log(`User ${user.name} (ID: ${user.id}) is ${user.active ? "Active" : "Inactive"}`);
+
 
 ---
 

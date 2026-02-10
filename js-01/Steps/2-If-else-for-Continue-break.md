@@ -69,11 +69,20 @@ continue → skip this item
 break → stop the loop
 
 
-// ✅ BREAK — stop when priority = 3
+Stop When First Pending Task Found
+Suppose you only want the first pending task, not all pending tasks.
+
+const tasks = [
+  { id: 1, title: "Learn Variables", completed: true, priority: 1 },
+  { id: 2, title: "Practice Objects", completed: false, priority: 2 },
+  { id: 3, title: "Study Loops", completed: false, priority: 3 }
+];
+
+
 for (let i = 0; i < tasks.length; i++) {
-  if (tasks[i].priority === 3) {
-    console.log("Found priority 3 — stopping");
-    break;
+  if (!tasks[i].completed) {
+    console.log("Finding First pending task -", "Task ID:", tasks[i].id, "Task Title:", tasks[i].title);
+    break;   // stop loop after first match
   }
 }
 
