@@ -95,6 +95,38 @@ console.log(name);
 
 🖥 Output: `Ana`
 
+
+✅ Real-World Example — API Response Handling
+
+Imagine you get this data from an API:
+
+const response = {
+  id: 101,
+  name: "Sathish",
+  email: "sathish@mail.com",
+  isActive: true
+};
+
+❌ Without Destructuring (repetitive)
+console.log(response.name);
+console.log(response.email);
+console.log(response.isActive);
+
+
+Too repetitive.
+
+✅ With Destructuring (real-world style)
+const { name, email, isActive } = response;
+
+console.log(name);
+console.log(email);
+console.log(isActive);
+
+
+Cleaner ✅
+Shorter ✅
+Common in production code ✅
+
 ---
 
 # ✅ 5️⃣ Classes

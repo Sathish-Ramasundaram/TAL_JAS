@@ -1,6 +1,5 @@
 11. Functions
-    A function = reusable block of code
-    Write once → call many times with different value
+A function is a reusable block of code designed to perform a specific task. It can be called multiple times with different inputs and can return a result.
 
 12. Update with this:
 
@@ -123,3 +122,143 @@ console.log("No of Pending Tasks:", countPending(tasks));
 
 
 ------------
+
+
+Function scope = variables declared inside a function are accessible only inside that function.
+Outside code cannot access them
+They are private to the function
+
+Example: 
+function test() {
+  let x = 10;
+  console.log(x);
+}
+
+test();          // 10
+console.log(x);  // ❌ Error
+
+Why error?
+Because x lives only inside test() — it has function scope.
+
+
+function greet(name) {
+  let message = "Hello " + name;
+  return message;
+}
+
+console.log(greet("Sam"));
+console.log(message); // ❌ not accessible
+
+Declared inside function → usable only inside function
+
+------------------------------
+
+Closure:
+
+Closure is just one step beyond function scope.
+A closure happens when an inner function remembers and can use variables from its outer function — even after the outer function has finished running.
+
+If you feel hard to understand: 
+Go down to top:
+
+function makeCounter() {
+  let count = 0; // The 'count' variable is in the outer function's scope
+
+  function increment() {
+    count++;
+    return count;
+  }
+
+  return increment; // Exposing the inner function
+}
+
+const counter1 = makeCounter();
+console.log(counter1()); // Output: 1
+console.log(counter1()); // Output: 2
+
+const counter2 = makeCounter(); // Creates a *new*, separate closure with its own 'count'
+console.log(counter2()); // Output: 1
+
+
+function createCounter() {
+  let value = 0;
+
+  return function() {
+    value++;
+    return value;
+  };
+}
+
+const counter = createCounter();
+
+console.log(counter()); // 1
+console.log(counter()); // 2
+
+------------------------------------------------------
+
+
+function createCounter() {
+  let value = 0;
+
+  return function () {
+    value++;
+    return value;
+  };
+}
+
+const counter = createCounter();
+
+console.log(counter());
+
+Output: 
+1
+
+The inner function remembers the value variable even after createCounter() finishes.
+That memory = closure.
+
+
+
+-----------------------------------------------------------
+
+function createCounter() {
+  let value = 0;
+
+  return function () {
+    value++;
+    return value;
+  };
+}
+
+const counter = createCounter();
+
+console.log(counter);
+
+
+Output: 
+
+
+ƒ () {
+    value++;
+    return value;
+  }
+
+
+-------------------------------------------
+
+function createCounter() {
+let value = 0;
+return value;
+}
+
+const counter = createCounter();
+
+console.log(counter);
+
+-----------------------------------------
+
+
+function createCounter() {
+let value = 0;
+return value;
+}
+console.log(createCounter());

@@ -79,10 +79,8 @@ do {
 
 4. Labelled Statement:
 A labelled statement gives a name to a loop or block so you can control it using break or continue.
-
-label = named loop exit
-break label = exit that loop
-continue label = jump to next round of that loop
+- Used mainly with nested loops
+- Lets you break/continue an outer loop from inside an inner loop
 
 
 Basic Syntax:
@@ -98,24 +96,14 @@ Without Label:
 
 for (let i = 1; i <= 5; i++) {
   for (let j = 1; j <= 5; j++) {
-    if (j === 1) break;
+    if (j === 3) break;
     console.log(i, j);
   }
 }
 
 
 Output: 
-Blank
 
-if j === 2
-Output: 
-1 1
-2 1
-3 1
-4 1
-5 1
-
-if j === 3
 
 1 1
 1 2
@@ -137,16 +125,13 @@ With Label:
 outer:
 for (let i = 1; i <= 5; i++) {
   for (let j = 1; j <= 5; j++) {
-    if (j === 2) break outer;
+    if (j === 3) break outer;
     console.log(i, j);
   }
 }
 
 Output:
-when j === 2
-1 1
 
-When j === 3
 1 1
 1 2
 
@@ -157,6 +142,7 @@ everything stops immediately
 ---------------------
 
 Continue: 
+
 for (let i=1; i<5; i++){
     for(let j=1; j<5; j++){
         if( j === 3) 
@@ -206,3 +192,9 @@ Output
 
 
 When j = 3 → jump to next i
+
+
+
+Without label → skips only that inner loop iteration where condition is true, then continues inner loop normally.
+
+With label + continue → when condition is true, it immediately jumps to the next outer loop iteration, skipping the rest of the inner loop.

@@ -1,6 +1,9 @@
 1. Variables & Data Types
 
+Example: 
+
 let x = 10;
+
 let → declaration keyword
 x   → variable name
 10  → value
@@ -177,6 +180,7 @@ function test() {
 # ✅ Real Confusion Case — Shadowing
 
 ```javascript
+
 var a = 1;
 
 function demo() {
@@ -185,6 +189,7 @@ function demo() {
 }
 
 demo();
+
 ```
 
 ---
@@ -269,7 +274,9 @@ node script.js
 null vs Empty Value vs undefined
 
 null:
-There is intentionally no value.
+✔️ Means intentionally no value
+✔️ Often used when value will come later
+⚠️ typeof null returns "object" — but this is a JavaScript bug/legacy behavior
 
 Empty value:
 Value exists — but contains nothing
@@ -308,51 +315,58 @@ type nul > index.html
 
 ```
 
-4. Object and Array:
+7. Structural types = types that can hold multiple values or behavior inside them.
+They are built using primitives and can contain:
+properties
+methods (functions)
+nested values
 
-Concept First (2 lines only)
-Object = one task with properties (title, priority, status)
-Array = list of many task objects
+Think of them as containers / structures.
 
-5. Replace the code with this:
+✅ Two Main Structural Types in JavaScript
+1️⃣ Object
+2️⃣ Function
 
-```
 
-// One task as OBJECT
-const task1 = {
-  id: 1,
-  title: "Learn Variables",
-  completed: false,
-  priority: 1
+Objects store data in key → value pairs.
+
+let user = {
+  name: "Sathish",
+  age: 25
 };
 
-const task2 = {
-  id: 2,
-  title: "Practice Objects",
-  completed: false,
-  priority: 2
-};
-
-// ARRAY of tasks
-const tasks = [task1, task2];
-
-// Access object property
-console.log("First task title:", task1.title);
-console.log("First task completion status:", task1.completed)
-
-console.log("-----------------------------------------------");
-
-// Access array item
-console.log("Second task:", tasks[1]);
-
-console.log("-----------------------------------------------");
-
-// Change value
-tasks[0].completed = true;
-
-console.log("Updated tasks:", tasks);
+console.log(user.name); // Sathish
 
 
-```
+Objects can contain:
+strings
+numbers
+arrays
+other objects
+functions
 
-6. Test
+So they are structured data holders.
+
+Functions are also objects in JavaScript.
+
+They store behavior (code) instead of just data.
+
+function greet() {
+  return "Hello";
+}
+
+console.log(greet()); // Hello
+
+
+Check this:
+
+console.log(typeof greet); // "function"
+
+
+But internally, functions are still objects with callable behavior.
+
+
+Primitive = value
+Structural = container of values or behavior
+
+

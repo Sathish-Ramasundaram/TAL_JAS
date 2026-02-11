@@ -40,7 +40,37 @@ sam
 {id: 3, title: 'Study Loops', completed: false, priority: 3}
 
 
+Real world: 
 
+const apiResponse = {
+  name: "Sam",
+  age: 25,
+  city: "Chennai"
+};
+
+for (let key in apiResponse) {
+  console.log(key, apiResponse[key]);
+}
+
+Use case:
+logging
+validation
+transforming data
+
+const form = {
+  username: "",
+  email: "a@test.com",
+  password: ""
+};
+
+for (let field in form) {
+  if (!form[field]) {
+    console.log(field + " is required");
+  }
+}
+
+✅ Dynamically checks all fields
+No need to hardcode field names.
 ----------------------------
 
 for…of → Values (Iterables only)

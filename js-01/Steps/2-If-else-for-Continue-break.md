@@ -59,8 +59,23 @@ for (let i = 0; i < tasks.length; i++) {
 
 
 continue means:
-🚫 Skip the rest of this loop turn
-▶️ Jump to next item
+Skip current loop iteration → go to next loop round
+👉 Loop does NOT stop
+👉 Only skips that one cycle
+
+Simple Example: 
+for (let i = 1; i <= 5; i++) {
+  if (i === 3) {
+    continue;
+  }
+  console.log(i);
+}
+
+Output: 
+1
+2
+4
+5
 
 10. Common Confusion: 
 For this example, When all the completed status is false, both continue and break looks work like same.
@@ -90,15 +105,23 @@ Even simple:
 
 for (let i = 1; i <= 10; i++) {
   if (i === 5) {
-    console.log("Stop at 5");
+    console.log("5");
     break;
   }
 
   console.log(i);
 }
 
+Output: 
+1
+2
+3
+4
+5
 
-break → stop the whole loop
+Break Means
+Stop the loop completely
+👉 Loop ends immediately
 
 ```
 
