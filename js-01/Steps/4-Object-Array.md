@@ -1,5 +1,5 @@
-
-
+// ARRAY of tasks
+const tasks = [task1, task2];
 
 // One task as OBJECT
 const task1 = {
@@ -16,8 +16,6 @@ const task2 = {
   priority: 2
 };
 
-// ARRAY of tasks
-const tasks = [task1, task2];
 
 // Access object property
 console.log("First task title:", task1.title);

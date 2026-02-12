@@ -59,14 +59,18 @@ for (let i = 0; i < tasks.length; i++) {
 
 
 continue means:
-Skip current loop iteration → go to next loop round
+skip the remaining code in the current loop iteration and move to the next iteration
 👉 Loop does NOT stop
 👉 Only skips that one cycle
+
+An iteration is one complete cycle/run of the loop body.
 
 Simple Example: 
 for (let i = 1; i <= 5; i++) {
   if (i === 3) {
+    console.log("3 will be skipped");
     continue;
+    console.log("This will not be run. That is called unreachable code after continue.")
   }
   console.log(i);
 }
@@ -74,11 +78,12 @@ for (let i = 1; i <= 5; i++) {
 Output: 
 1
 2
+3 will be skipped
 4
 5
 
 10. Common Confusion: 
-For this example, When all the completed status is false, both continue and break looks work like same.
+For the previous example, When all the completed status is false, both continue and break looks work like same.
 
 continue → skip this item
 break → stop the loop

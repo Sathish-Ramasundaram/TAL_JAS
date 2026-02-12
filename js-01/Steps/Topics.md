@@ -39,3 +39,6 @@ Understanding newer features introduced in ECMAScript 6 and later versions, such
 
 Chapter 8: Debugging and testing
 Understanding how to use the developer tools in a browser and a JavaScript framework for debugging, try & catch and unit testing your code. 
+
+Additional: 
+Map

@@ -50,20 +50,50 @@ Callback:
 A callback is a function passed as an argument to another function, which is invoked (called) inside that function — either immediately or later.
 
 Example: 
-function greet(name, callback) {
-  console.log("Hello " + name);
-  callback();
+function sayHello(name, callback) {
+  console.log("Hello", name);
+  callback(name);
 }
 
-function sayBye() {
-  console.log("Goodbye!");
+function askHow(name) {
+  console.log("How are you,", name, "?");
 }
 
-greet("Sam", sayBye);
+sayHello("Arun", askHow);
+
+console.log(".............");
 
 Output: 
-Hello Sam
-Goodbye!
+Hello Arun
+How are you, Arun ?
+.............
+
+
+---------------------------------------
+
+Asynchronous Callback: 
+
+function sayHello(name, callback) {
+  console.log("Hello", name);
+  setTimeout(() => {
+    callback(name);
+  }, 2000);
+}
+
+function askHow(name) {
+  console.log("How are you,", name, "?");
+}
+
+sayHello("Arun", askHow);
+
+console.log(".......");
+
+
+Output: 
+Hello Arun
+.......
+How are you, Arun ?
+
 
 
 JavaScript actually has two main phases
@@ -75,13 +105,6 @@ Order doesn’t matter here — both functions are stored in memory.
 After this phase, memory has:
 greet → function stored
 sayBye → function stored
-
-Execution order: 
-1️⃣ greet("Sam", sayBye)
-2️⃣ console.log("Hello Sam")
-3️⃣ callback() → sayBye()
-4️⃣ console.log("Goodbye!")
-
 
 -----------------------------------------------------
 
@@ -100,7 +123,6 @@ function showResult(value) {
 add(2, 3, showResult);
 
 
-
 Inline callback function (most commonly used): 
 We remove the separate showResult function and write it directly inside the call.
 
@@ -112,6 +134,19 @@ function add(a, b, callback) {
 add(2, 3, function(value) {
   console.log("Result is:", value);
 });
+
+Inline callback function for above example: 
+
+function sayHello(name, callback) {
+  console.log("Hello", name);
+  callback(name);
+}
+
+sayHello("Arun", function(name) {
+  console.log("How are you,", name, "?");
+});
+
+console.log(".............");
 
 
 
@@ -187,6 +222,7 @@ setTimeout is async — it runs later.
 
 
 3. Promise (clean async container)
+A Promise is an object that represents a value that will be available later (after an async operation finishes).
 A Promise = “I will give result later”
 
 Promise = container
@@ -203,47 +239,49 @@ Food delivered → resolved ✅
 Restaurant closed → rejected ❌
 
 That’s exactly how Promise works.
-Come from down to top
+Come from down to top 
+function - asyn function - set true/false - return new Promise - then, catch note: error must be new Error. No string. 
 
 4. Code:
 
 
+function getTask(status) {
 
-const status = false;
-
-function getTask() {
   return new Promise((resolve, reject) => {
-
-    setTimeout(() => {
-      if (status) {
-        resolve("Task Completed");
+    setTimeout(() => {    
+      if (status === 1) {
+        resolve("Active");
       } else {
-        reject("Task failed");
+        reject(new Error("Inactive"));
       }
     }, 2000);
-
   });
+
 }
 
-getTask()
-  .then(msg => console.log("SUCCESS:", msg))
-  .catch(err => console.log("ERROR:", err));
+getTask(0)
+  .then(s => console.log("Success:", s))
+  .catch(e => console.log("Error:", e.message));
+
 
 
 -----------------------------------------------------------
-const status = false;
+function getTask(status) {
 
-function getTask() {
-  setTimeout(() => {
-    if (status) {
-      console.log("status true");
-    } else {
-      console.log("status false");
-    }
-  }, 2000);
+    setTimeout(() => {
+        
+        if(status === 1) {
+            console.log("Active");
+        }else {
+            console.log("Inactive");
+        }
+
+
+    },2000);
+    
 }
 
-getTask();
+getTask(0);
 
 
 ---------------------------------------------------
@@ -267,7 +305,36 @@ getTask();
 
 -----------------------------------
 
-Convert to async / await
+async / await: 
+async/await = easier way to use promises.
+async/await is a syntax that lets you write asynchronous Promise-based code in a synchronous-looking way.
+
+Above example convert: create new function run with async and await.  
+
+function getTask(status) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      status === 1
+        ? resolve("Active")
+        : reject(new Error("Inactive"));
+    }, 2000);
+  });
+}
+
+
+async function run() {
+  try {
+    const result = await getTask(1);
+    console.log("Success:", result);
+  } catch (e) {
+    console.log("Error:", e.message);
+  }
+}
+
+run();
+
+
+---------------------------------------------------------------------------------
 
 
 const status = true;
@@ -285,6 +352,7 @@ function wait(stepName, delay) {
 }
 
 // ✅ async → always returns a Promise
+
 async function goLive() {
   console.log("Preparing to go live...");
 

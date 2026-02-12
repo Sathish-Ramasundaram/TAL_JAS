@@ -37,34 +37,7 @@ printTasks(tasks);
 
 ---
 
-pieces:
-
-1. -> Direct access
-   console.log(tasks[0].title, "-" ,tasks[0].completed)
-   console.log(tasks[1].title, "-" ,tasks[1].completed)
-
-2. → Loop
-   for(i=0; i < tasks.length; i++){
-   console.log(tasks[i].title, "-" ,tasks[i].completed)
-   }
-
-3. → Reference variable
-   const taskList = tasks;
-   for (let i = 0; i < taskList.length; i++) {
-   console.log(taskList[i].title, "-", taskList[i].completed);
-   }
-
-4. → Function scope
-   function printTask() {
-   const taskList = tasks;
-   for (let i = 0; i < taskList.length; i++) {
-   console.log(taskList[i].title, "-", taskList[i].completed);
-   }
-   }
-
-printTask();
-
-5. → Parameter passing
+→ Parameter passing
    function printTask(taskReceiver) {
    console.log(taskReceiver[0].title);
    console.log(taskReceiver[1].title);
@@ -179,6 +152,7 @@ console.log(counter1()); // Output: 2
 const counter2 = makeCounter(); // Creates a *new*, separate closure with its own 'count'
 console.log(counter2()); // Output: 1
 
+-----------------------------------------
 
 function createCounter() {
   let value = 0;

@@ -1,3 +1,7 @@
+Chapter 1: Variables and data types
+Understanding how to declare and use variables, as well as the different data types primitive (e.g. null, undefined, strings, numbers, Booleans, bigint, symbol) and structural (e.g. object, function) in JavaScript. 
+
+
 1. Variables & Data Types
 
 Example: 
@@ -20,6 +24,7 @@ Problems:
 function scoped
 hoisting confusion
 redeclaration allowed
+
 Modern rule:
 Prefer let and const
 
@@ -40,46 +45,13 @@ arr = [5,6];   // ❌ not allowed (reassignment)
 
 ------------------------------------------
 
-function scoped: 
-A var variable is visible everywhere inside the entire function, not just inside { } blocks.
-
-Example: 
-function test() {
-  if (true) {
-    var x = 10;
-  }
-
-  console.log(x);
-}
-
-test();
-
--------
-Output: 
-10
-
-Even though x was declared inside if { } block,
-var ignores block scope — it spreads to whole function.
-
-if block ❌
-function block ✅
-
------
-
-Now Compare — let Is Block Scoped
-change it from var to let
-
-Output: 
-Error: y is not defined
 
 
-let respects { } block.
-only inside if block
-not outside
+Hoisting is JavaScript's behavior where declarations of variables and functions are moved to the top of their scope during the compilation phase - before the code is executed. 
 
-----------------------------------------------
-
-Hoisting = JavaScript moves variable declarations to the top of their scope before running code.
+Only declarations are hoisted, not initializations. 
+That means: 
+The variable or function name is known before execution
 
 ```
 declaration moves
@@ -136,7 +108,6 @@ ReferenceError
 ```
 
 Much clearer and safer.
-
 That’s why modern JS prefers:
 
 ```
@@ -200,9 +171,10 @@ demo();
 undefined
 ```
 
-Students expect `1` — but get undefined.
-
+Students expect `1` — but get undefined
 Because inner `var a` is hoisted inside function.
+
+if you use let or const, you will get ReferenceError.
 
 ---
 
@@ -240,10 +212,14 @@ console.log("Type of Priority:", typeof(priority));
 
 // BOOLEAN
 let isCompleted = false;
+console.log("Completed:", isCompleted);
+console.log("Type of isCompleted:", typeof(isCompleted));
 
 // NULL (no due date yet)
 // null means: “this variable intentionally has no value.”
 let dueDate = null;
+console.log("Due date:", dueDate);
+console.log("Type of dueDate:", typeof(dueDate));
 
 // UNDEFINED (not assigned yet)
 let note;
@@ -257,8 +233,6 @@ let internalKey = Symbol("taskKey");
 
 
 
-console.log("Completed:", isCompleted);
-console.log("Due date:", dueDate);
 console.log("Note:", note);
 console.log("Task ID:", taskId);
 console.log("Symbol:", internalKey);
@@ -292,6 +266,39 @@ A variable exists, but no value has been assigned yet.
 
 let x;
 console.log(x); // undefined
+
+------------------------
+
+Simple Example: 
+
+const message = null;
+const name = "";
+
+// Type check
+console.log("typeof message:", typeof message);
+console.log("typeof name:", typeof name);
+
+// Truthy / Falsy check
+if (message) {
+  console.log("message is truthy");
+} else {
+  console.log("message is falsy");
+}
+
+if (name) {
+  console.log("name is truthy");
+} else {
+  console.log("name is falsy");
+}
+
+console.log("------------------");
+
+// Length check (only works for string)
+console.log("name length:", name.length);
+
+// console.log(message.length); ❌ would throw error
+
+-----------------------
 
 3. 
 
@@ -332,10 +339,52 @@ Objects store data in key → value pairs.
 
 let user = {
   name: "Sathish",
-  age: 25
+  id: 120
 };
 
 console.log(user.name); // Sathish
+
+🔹 name and id → property keys (also called properties or fields)
+🔹 "Sathish" and 120 → property values
+
+-------
+
+Quick Guide about Class and Method:
+- Class is a blueprint to create multiple objects. 
+- A function inside a class is called method. 
+- constructor() - Special method that runs when object is created. used to assign property values
+- this keyword - Store value inside this object instance. 
+
+Expand the above object into class & method: 
+
+
+class User {
+
+constructor(name, id) 
+{
+this.name = name;
+this.id = id;
+}
+
+showInfo() 
+{
+console.log("Name:", this.name);
+console.log("ID:", this.id);
+}
+
+}
+
+const user1 = new User("Sathish", 120);
+const user2 = new User("Arun", 122);
+
+user1.showInfo();
+console.log(user1.name);
+
+Output: 
+
+
+-----------------
+
 
 
 Objects can contain:
